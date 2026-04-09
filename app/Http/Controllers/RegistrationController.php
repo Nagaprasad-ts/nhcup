@@ -44,8 +44,10 @@ class RegistrationController extends Controller
                 config('services.razorpay.key_secret')
             );
 
+            $amountInPaise = (int) ($event->fee * 100);
+
             $order = $api->order->create([
-                'amount'          => $event->fee,
+                'amount'          => $amountInPaise,
                 'currency'        => 'INR',
                 'receipt'         => 'nhcup_' . uniqid(),
                 'payment_capture' => 1,   // auto-capture
@@ -60,13 +62,13 @@ class RegistrationController extends Controller
                 ...$validated,
                 'razorpay_order_id' => $order['id'],
                 'payment_status'    => 'pending',
-                'amount'            => $event->fee,
+                'amount'            => $amountInPaise,
             ]);
 
             return response()->json([
                 'registration_id' => $registration->id,
                 'order_id'        => $order['id'],
-                'amount'          => $event->fee,
+                'amount'          => $amountInPaise,
                 'currency'        => 'INR',
                 'key_id'          => config('services.razorpay.key_id'),
                 'name'            => $validated['captain_name'],

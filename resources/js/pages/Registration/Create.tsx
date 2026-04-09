@@ -132,7 +132,7 @@ function FeeBadge({ fee }: { fee: number }) {
         ? 'bg-emerald-100 text-emerald-700'
         : 'bg-blue-100 text-blue-700'
     }`}>
-      ₹{(fee / 100).toLocaleString('en-IN')}
+      ₹{(fee)}
     </span>
   )
 }
@@ -384,7 +384,7 @@ export default function Create({ events }: Props) {
                   <option value="">— Select an event —</option>
                   {events.map((ev) => (
                     <option key={ev.id} value={String(ev.id)}>
-                      {ev.name} — ₹{(ev.fee / 100).toLocaleString('en-IN')}
+                      {ev.name} — ₹{ev.fee}
                     </option>
                   ))}
                 </select>
@@ -406,16 +406,16 @@ export default function Create({ events }: Props) {
                 {selectedEvent ? (
                   <div className="flex items-center gap-2 mt-1">
                     <p className="text-2xl font-extrabold text-blue-800">
-                      ₹{(selectedEvent.fee / 100).toLocaleString('en-IN')}
+                      ₹{selectedEvent.fee}
                     </p>
-                    <FeeBadge fee={selectedEvent.fee} />
+                    {/* <FeeBadge fee={selectedEvent.fee} /> */}
                   </div>
                 ) : (
                   <p className="text-sm text-slate-400 mt-1">Select an event to see the fee</p>
                 )}
               </div>
               <div className="text-right">
-                <img
+                {/* <img
                   src="https://razorpay.com/assets/razorpay-glyph.svg"
                   alt="Razorpay"
                   className="h-7 ml-auto mb-1"
@@ -423,7 +423,7 @@ export default function Create({ events }: Props) {
                     (e.target as HTMLImageElement).style.display = 'none' 
                 }}
                 />
-                <p className="text-xs text-slate-500">Secured by Razorpay</p>
+                <p className="text-xs text-slate-500">Secured by Razorpay</p> */}
               </div>
             </div>
 
@@ -448,7 +448,7 @@ export default function Create({ events }: Props) {
                       d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                   </svg>
                   {selectedEvent
-                    ? `Register & Pay ₹${(selectedEvent.fee / 100).toLocaleString('en-IN')}`
+                    ? `Register & Pay ₹${selectedEvent.fee}`
                     : 'Register & Pay'}
                 </>
               )}
