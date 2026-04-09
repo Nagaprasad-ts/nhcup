@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('fee');        // in paise (e.g. 100000 = ₹1000)
+            $table->decimal('fee', 10, 2); // e.g. 1000.00
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
