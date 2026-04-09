@@ -18,6 +18,11 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, HasRoles;
 
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->hasAnyRole(['super_admin', 'core-team']);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
