@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NH Cup Registration Confirmed</title>
+  <title>New Horizon Cup 2026 Registration Confirmed</title>
   <style>
     body      { font-family: 'Segoe UI', Arial, sans-serif; background:#f4f6f9; margin:0; padding:0; }
     .wrapper  { max-width:600px; margin:40px auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.08); }
@@ -29,7 +29,7 @@
 
     {{-- Header --}}
     <div class="header">
-      <h1>🏆 NH Cup</h1>
+      <h1>🏆 New Horizon Cup 2026</h1>
       <p>Official Sports Championship</p>
       <span class="badge">Registration Confirmed</span>
     </div>
@@ -38,7 +38,7 @@
     <div class="body">
       <h2>Dear {{ $registration->captain_name }},</h2>
       <p>
-        Your registration for the <strong>NH Cup</strong> has been successfully confirmed!
+        Your registration for the <strong>New Horizon Cup 2026</strong> has been successfully confirmed!
         Your payment has been received and your spot is secured.
       </p>
 
@@ -93,13 +93,13 @@
 
       <p>
         For any queries, please contact the organizing committee. We look forward
-        to seeing you at the NH Cup!
+        to seeing you at the New Horizon Cup 2026!
       </p>
     </div>
 
     {{-- Footer --}}
     <div class="footer">
-      <p>© {{ date('Y') }} NH Cup — All Rights Reserved</p>
+      <p>© {{ date('Y') }} New Horizon Cup 2026 — All Rights Reserved</p>
       <p>This is an automated confirmation email. Please do not reply to this email.</p>
     </div>
 

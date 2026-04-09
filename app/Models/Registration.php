@@ -44,7 +44,7 @@ class Registration extends Model
     /** Returns the registration fee in rupees (display-friendly). */
     public function amountInRupees(): float
     {
-        return $this->amount / 100;
+        return $this->amount;
     }
 
     public function event()

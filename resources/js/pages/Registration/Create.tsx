@@ -386,6 +386,7 @@ export default function Create({ events }: Props) {
                     <option key={ev.id} value={String(ev.id)}>
                       {ev.name} — ₹{ev.fee}
                     </option>
+
                   ))}
                 </select>
               </Field>

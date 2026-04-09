@@ -28,7 +28,7 @@ class Event extends Model
 
     // public function feeInRupees(): float
     // {
-    //     return $this->fee / 100;
+    //     return $this->fee;
     // }
 
     public function registrations()
