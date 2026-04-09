@@ -43,7 +43,7 @@
       </p>
 
       <div class="success-badge">
-        ✅ Payment Successful — ₹{{ number_format($amountRupees, 2) }}
+        ✅ Payment Successful — ₹{{ $amountRupees }}
       </div>
 
       {{-- Registration Details --}}
