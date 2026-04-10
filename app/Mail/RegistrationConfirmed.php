@@ -18,7 +18,7 @@ class RegistrationConfirmed extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'NH Cup Registration Confirmed — ' . $this->registration->event->name,
+            subject: 'New Horizon Cup 2026 Registration Confirmed — ' . $this->registration->event->name,
         );
     }
 

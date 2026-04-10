@@ -24,7 +24,7 @@ class RegistrationInfolist
                     ->placeholder('-'),
                 TextEntry::make('payment_status'),
                 TextEntry::make('amount')
-                    ->numeric(),
+                    ->money('INR'),
                 IconEntry::make('email_sent')
                     ->boolean(),
                 TextEntry::make('created_at')

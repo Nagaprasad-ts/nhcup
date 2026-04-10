@@ -62,7 +62,7 @@ class RegistrationController extends Controller
                 ...$validated,
                 'razorpay_order_id' => $order['id'],
                 'payment_status'    => 'pending',
-                'amount'            => $amountInPaise,
+                'amount'            => $event->fee,
             ]);
 
             return response()->json([

@@ -35,7 +35,7 @@ class RegistrationsTable
                 TextColumn::make('payment_status')
                     ->searchable(),
                 TextColumn::make('amount')
-                    ->numeric()
+                    ->money('INR')
                     ->sortable(),
                 IconColumn::make('email_sent')
                     ->boolean(),

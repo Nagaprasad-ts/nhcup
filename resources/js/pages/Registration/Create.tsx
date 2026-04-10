@@ -323,7 +323,7 @@ export default function Create({ events }: Props) {
             <div>
               <h2 className="text-xs font-bold uppercase tracking-widest text-blue-600 mb-4">Institution Details</h2>
               <Field label="Name of Institution" required error={errors.institution_name}>
-                <Input type="text" placeholder="e.g. National Institute of Technology"
+                <Input type="text" placeholder="e.g. New Horizon College of Engineering"
                   value={form.institution_name} onChange={set('institution_name')} error={errors.institution_name} />
               </Field>
             </div>

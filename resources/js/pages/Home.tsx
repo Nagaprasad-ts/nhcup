@@ -7,7 +7,7 @@ import { Link } from '@inertiajs/react';
 
 const stats = [
     { num: '11', label: 'Events' },
-    { num: '₹4.2L', label: 'Prize pool' },
+    { num: '₹4.2L', label: 'Prize Pool' },
     { num: '3', label: 'Days' },
     { num: 'VTU', label: 'Affiliated' },
 ];
@@ -69,9 +69,6 @@ export default function Home() {
                     <p className="text-xs text-center md:text-left md:text-md font-medium uppercase tracking-widest text-green-400">
                         Department of Physical Education & Sports
                     </p>
-                    <p className="mt-0.5 text-base text-center md:text-left tracking-wide text-gray-400">
-                        New Horizon College of Engineering
-                    </p>
 
                     {/* Title */}
                     {/* <h1 className="mt-4 text-5xl font-medium leading-[1.05] text-white sm:text-6xl lg:text-7xl">
@@ -111,7 +108,7 @@ export default function Home() {
                             href="/register"
                             className="inline-flex items-center gap-2 rounded-lg bg-green-400 px-6 py-2.5 text-lg font-medium text-green-950 transition hover:bg-green-300 active:scale-95"
                         >
-                            Register now
+                            Register Now
                         </Link>
                         <a
                             href="/brochure/view"
@@ -119,7 +116,7 @@ export default function Home() {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-2.5 text-lg font-medium text-white transition hover:bg-white/10 active:scale-95"
                         >
-                            View brochure
+                            View Brochure
                         </a>
                     </div>
 
