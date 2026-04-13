@@ -15,14 +15,29 @@ class RegistrationController extends Controller
     public function create()
     {
         $events = Event::active()
+            ->where('id', '!=', 1)
             ->orderBy('name')
             ->get(['id', 'name', 'fee']);
- 
+
         return Inertia::render('Registration/Create', [
             'events'          => $events,
             'razorpay_key_id' => config('services.razorpay.key_id'),
         ]);
     }
+
+    public function basketball()
+    {
+        $events = Event::active()
+            ->where('id', 1)
+            ->orderBy('name')
+            ->get(['id', 'name', 'fee']);
+
+        return Inertia::render('Basketball/Create', [
+            'events'          => $events,
+            'razorpay_key_id' => config('services.razorpay.key_id'),
+        ]);
+    }
+
     // ─── Create Razorpay Order & Store Pending Registration ──────────────────
 
     public function store(Request $request)
@@ -30,10 +45,10 @@ class RegistrationController extends Controller
         $validated = $request->validate([
             'institution_name' => ['required', 'string', 'max:255'],
             'ped_name'         => ['required', 'string', 'max:255'],
-            'ped_contact'      => ['required', 'string', 'max:15', 'regex:/^[0-9+\-\s]{7,15}$/'],
+            'ped_contact'      => ['required', 'digits:10'],
             'captain_name'     => ['required', 'string', 'max:255'],
             'captain_email'    => ['required', 'email', 'max:255'],
-            'captain_contact'  => ['required', 'string', 'max:15', 'regex:/^[0-9+\-\s]{7,15}$/'],
+            'captain_contact'  => ['required', 'digits:10'],
             'event_id'         => ['required', 'integer', 'exists:events,id'],
         ]);
 

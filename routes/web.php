@@ -17,6 +17,7 @@ Route::get('/brochure/view', [RegistrationController::class, 'viewBrochure'])->n
 Route::get('/register',  [RegistrationController::class, 'create'])->name('registration.create');
 Route::post('/register', [RegistrationController::class, 'store'])->name('registration.store');
 Route::get('/register/success', [RegistrationController::class, 'success'])->name('registration.success');
+Route::get('/basketball', [RegistrationController::class, 'basketball'])->name('registration.basketball');
  
 // ── Razorpay Webhook ───────────────────────────────────────────────────────────
 // This route is excluded from CSRF verification (see App\Http\Middleware\VerifyCsrfToken)

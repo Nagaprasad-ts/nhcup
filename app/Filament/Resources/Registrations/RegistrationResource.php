@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrationResource extends Resource
 {
@@ -35,6 +36,17 @@ class RegistrationResource extends Resource
     public static function table(Table $table): Table
     {
         return RegistrationsTable::configure($table);
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $query = static::getModel()::query();
+
+        if (Auth::user()?->hasRole('core-team')) {
+            $query->where('payment_status', 'paid');
+        }
+
+        return (string) $query->count();
     }
 
     public static function getRelations(): array

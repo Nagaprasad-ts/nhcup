@@ -9,6 +9,8 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class RegistrationsTable
 {
@@ -20,25 +22,14 @@ class RegistrationsTable
                     ->searchable(),
                 TextColumn::make('ped_name')
                     ->searchable(),
-                TextColumn::make('ped_contact')
-                    ->searchable(),
                 TextColumn::make('captain_name')
                     ->searchable(),
-                TextColumn::make('captain_email')
-                    ->searchable(),
-                TextColumn::make('captain_contact')
-                    ->searchable(),
-                TextColumn::make('razorpay_order_id')
-                    ->searchable(),
-                TextColumn::make('razorpay_payment_id')
-                    ->searchable(),
-                TextColumn::make('payment_status')
+                TextColumn::make('event.name')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('amount')
                     ->money('INR')
                     ->sortable(),
-                IconColumn::make('email_sent')
-                    ->boolean(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -47,21 +38,23 @@ class RegistrationsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('event_id')
-                    ->numeric()
-                    ->sortable(),
             ])
             ->filters([
                 //
             ])
+            ->modifyQueryUsing(function (Builder $query) {
+                if (Auth::user()?->hasRole('core-team')) {
+                    $query->where('payment_status', 'paid');
+                }
+            })
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                // BulkActionGroup::make([
+                //     DeleteBulkAction::make(),
+                // ]),
             ]);
     }
 }
