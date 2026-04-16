@@ -2,15 +2,16 @@
 
 namespace App\Filament\Resources\Registrations\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\RegistrationsExport;
+use Filament\Actions\Action;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class RegistrationsTable
 {
@@ -52,9 +53,19 @@ class RegistrationsTable
                 EditAction::make(),
             ])
             ->toolbarActions([
-                // BulkActionGroup::make([
-                //     DeleteBulkAction::make(),
-                // ]),
+                Action::make('export_all')
+                    ->label('Export All')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('info')
+                    ->visible(fn () => Auth::user()?->hasRole('super_admin'))
+                    ->action(fn () => Excel::download(new RegistrationsExport(false), 'registrations-all.xlsx')),
+
+                Action::make('export_paid')
+                    ->label('Export Paid')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->color('success')
+                    ->visible(fn () => Auth::user()?->hasRole('super_admin') || Auth::user()?->hasRole('core-team'))
+                    ->action(fn () => Excel::download(new RegistrationsExport(true), 'registrations-paid.xlsx')),
             ]);
     }
 }
