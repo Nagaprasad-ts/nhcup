@@ -33,10 +33,13 @@ class RegistrationsTable
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
+                    ->timezone('Asia/Kolkata')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('updated_at')
                     ->dateTime()
+                    ->timezone('Asia/Kolkata')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
