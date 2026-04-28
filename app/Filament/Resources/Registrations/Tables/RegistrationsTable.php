@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Exports\RegistrationsExport;
 use Filament\Actions\Action;
 use Maatwebsite\Excel\Facades\Excel;
+use Filament\Actions\ActionGroup;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class RegistrationsTable
@@ -31,6 +32,13 @@ class RegistrationsTable
                 TextColumn::make('amount')
                     ->money('INR')
                     ->sortable(),
+                TextColumn::make('payment_status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'paid' => 'success',
+                        'pending' => 'warning',
+                        'failed' => 'danger',
+                    }),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->timezone('Asia/Kolkata')
@@ -52,8 +60,13 @@ class RegistrationsTable
                 }
             })
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ActionGroup::make([
+                    ViewAction::make()
+                        ->hiddenLabel(),
+                    EditAction::make()
+                        ->hiddenLabel(),
+                ])
+                ->buttonGroup(),
             ])
             ->toolbarActions([
                 Action::make('export_all')
